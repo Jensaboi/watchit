@@ -1,0 +1,23 @@
+{
+  "name": "watchit",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "monorepo",
+    "media",
+    "app",
+    "movies",
+    "shows",
+    "tv-show",
+    "frontend",
+    "backend"
+  ],
+  "workspaces": [],
+  "license": "ISC",
+  "author": "Jens Lundin",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

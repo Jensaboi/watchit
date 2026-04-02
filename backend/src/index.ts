@@ -1,6 +1,5 @@
 import app from "./app.ts";
 import "./config/config.ts";
+const PORT = process.env.PORT ?? 3000;
 
-app.listen(8000, () =>
-  console.log(`Server connected listening on ${process.env.PORT}`),
-);
+app.listen(PORT, () => console.log(`Server connected listening on ${PORT}`));
