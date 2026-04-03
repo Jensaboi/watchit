@@ -6,14 +6,7 @@ const app = express();
 
 app.use(cors());
 
-app.use((req, res, next) => {
-  console.log("hej");
-
-  console.log(req.originalUrl);
-  next();
-});
-
-app.get("/", async (req, res, next) => {
+app.use(async (req, res, next) => {
   try {
     const url = req.originalUrl;
 
