@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+/* 
+color schema: 
+    Purple, red, brown
+
+
+*/
+
+/* Base default styles */
+@layer base {
+  *,
+  *::after,
+  *::before {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  html {
+    background-color: var(--color-zinc-900);
+    color: var(--color-zinc-50);
+  }
+}
+
+/*
+ === Component styles ===
+
+ Use the components layer for any more complicated classes 
+ you want to add to your project that you'd still like to be 
+ able to override with utility classes.
+*/
+@layer components {
+}
