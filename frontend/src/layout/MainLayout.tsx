@@ -25,8 +25,8 @@ export default function MainLayout() {
           </button>
         </div>
         <nav
-          data-isOpen={navOpen}
-          className="translate-0 absolute top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isOpen=false]:translate-x-full"
+          data-isopen={navOpen}
+          className="translate-0 absolute top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isopen=false]:translate-x-full"
         >
           <div className="p-4 flex justify-between align-center">
             <button onClick={() => setNavOpen(!navOpen)}>
@@ -42,7 +42,7 @@ export default function MainLayout() {
           </div>
           <ul className="flex flex-col flex-1 p-2">
             {navItems.map(item => (
-              <li>
+              <li key={item.name}>
                 <Link
                   onClick={() => setNavOpen(false)}
                   className="block py-3 px-2 hover:bg-zinc-800 rounded-md"
