@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage.tsx";
 import SignInPage from "./pages/SignInPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
 import MediaPage from "./pages/MediaPage.tsx";
-import MediaDetailsPage from "./pages/MediaDetails.tsx";
+import MediaDetailsPage from "./pages/MediaDetailsPage.tsx";
 
 const router = createBrowserRouter([
   {

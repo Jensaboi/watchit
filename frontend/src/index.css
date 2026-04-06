@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-/* 
-color schema: 
-    Purple, red, brown
-
-
-*/
-
 /* Base default styles */
 @layer base {
   *,
@@ -20,19 +13,20 @@ color schema:
   html {
     background-color: var(--color-zinc-900);
     color: var(--color-zinc-200);
+    overflow-x: hidden;
   }
 }
 
 /*
  === Component styles ===
 
- Use the components layer for any more complicated classes 
- you want to add to your project that you'd still like to be 
+ Use the components layer for any more complicated classes
+ you want to add to your project that you'd still like to be
  able to override with utility classes.
 */
 @layer components {
   .primary-btn {
-    padding-block: calc(var(--spacing) * 3) /* --spacing = 4px */;
+    padding-block: calc(var(--spacing) * 2) /* --spacing = 4px */;
     padding-inline: calc(var(--spacing) * 6);
     display: inline-flex;
     justify-content: center;
@@ -52,7 +46,7 @@ color schema:
   }
 
   .secondary-btn {
-    padding-block: calc(var(--spacing) * 3) /* --spacing = 4px */;
+    padding-block: calc(var(--spacing) * 2) /* --spacing = 4px */;
     padding-inline: calc(var(--spacing) * 6);
     display: inline-flex;
     justify-content: center;
