@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
+import App, { loader as appLoader } from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import MainLayout from "./layout/MainLayout.tsx";
 import HomePage from "./pages/HomePage.tsx";
@@ -13,6 +13,8 @@ import MediaDetailsPage from "./pages/MediaDetailsPage.tsx";
 const router = createBrowserRouter([
   {
     Component: App,
+    id: "app",
+    loader: appLoader,
     children: [
       {
         Component: MainLayout,

@@ -6,7 +6,7 @@ type UseMediaProps = {
 };
 export function useMedia({ media, filters }: UseMediaProps) {
   return useQuery({
-    queryKey: ["movie"],
+    queryKey: [media],
     queryFn: () => getMedia({ media, filters }),
   });
 }

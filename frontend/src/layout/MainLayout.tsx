@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const navItems = [
   { name: "Movies", path: "/movie" },
-  { name: "Shows", path: "/tv" },
+  { name: "Tv-Shows", path: "/tv" },
   { name: "Groups", path: "/groups" },
 ];
 
@@ -15,18 +15,18 @@ export default function MainLayout() {
   return (
     <div className="h-screen w-full flex flex-col">
       <header>
-        <div className="p-4 flex justify-between align-center">
+        <div className="p-4 flex flex-col justify-between align-center">
           <button
             aria-label="mobile-menu-btn"
             onClick={() => setNavOpen(!navOpen)}
-            className="bg-indigo-500/20 hover:bg-indigo-500/30 rounded-sm cursor-pointer hover:shadow-indigo-400/50 p-1 hover:shadow-xs "
+            className="self-end bg-indigo-500/20 hover:bg-indigo-500/30 rounded-sm cursor-pointer hover:shadow-indigo-400/50 p-1 hover:shadow-xs "
           >
             <Menu />
           </button>
         </div>
         <nav
           data-isopen={navOpen}
-          className="translate-0 absolute top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isopen=false]:translate-x-full"
+          className="z-10 translate-0 fixed top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isopen=false]:translate-x-full"
         >
           <div className="p-4 flex justify-between align-center">
             <button onClick={() => setNavOpen(!navOpen)}>
@@ -73,7 +73,7 @@ export default function MainLayout() {
         </nav>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 px-4">
         <Outlet />
       </main>
 

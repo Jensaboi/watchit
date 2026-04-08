@@ -10,7 +10,8 @@
     font-style: normal;
   }
 
-  html {
+  html,
+  body {
     background-color: var(--color-zinc-900);
     color: var(--color-zinc-200);
     overflow-x: hidden;
