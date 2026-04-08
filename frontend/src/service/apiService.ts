@@ -8,6 +8,6 @@ export async function getMedia({ media, filters }) {
   if (!res.ok) {
     throw new Error(data?.message ?? `Failed to load ${media}s...`);
   }
-  console.log(data);
+
   return data;
 }
