@@ -1,28 +1,33 @@
-import { NavLink } from "react-router";
+import { NavLink, useSearchParams } from "react-router";
 
 const filters = [
   {
     name: "Now Playing",
-    queryOptions: "",
+    query: {
+      sort_by: "popularity.desc",
+      with_release_type: "2|3",
+      "release_date.gte": "{min_date}",
+      "release_date.lte": "{max_date}",
+    },
   },
-  { name: "Popular", queryObject: {} },
-  { name: "Upcoming", queryObject: "" },
-  { name: "Top Rated", queryObject: "" },
+  {
+    name: "Popular",
+    query: {},
+  },
+  { name: "Upcoming", query: {} },
+  { name: "Top Rated", query: {} },
 ];
 
 export default function CommonFilters({ media }: { media: string }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <ul className="flex gap-4 whitespace-nowrap overflow-x-scroll py-4 no-scrollbar">
       {filters.map(filter => (
         <li className="text-lg font-medium">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-zinc-50" : "text-zinc-400"
-            }
-            to={`/${media}${filter.queryString}`}
-          >
+          <button onClick={() => setSearchParams(filter.query)}>
             {filter.name}
-          </NavLink>
+          </button>
         </li>
       ))}
     </ul>

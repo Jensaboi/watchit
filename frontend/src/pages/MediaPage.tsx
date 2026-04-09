@@ -18,8 +18,10 @@ export default function MediaPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const baseFilters = {
-    vote_average: searchParams.get("vote_average") ?? null,
-    vote_count: searchParams.get("vote_count") ?? null,
+    "vote_average.gte": searchParams.get("vote_average.gte") ?? null,
+    "vote_average.lte": searchParams.get("vote_average.lte") ?? null,
+    "vote_count.gte": searchParams.get("vote_count.gte") ?? null,
+    "vote_count.lte": searchParams.get("vote_count.lte") ?? null,
     language: searchParams.get("language") ?? null,
     watch_region: searchParams.get("watch_region") ?? null,
     sort_by: searchParams.get("sort_by") ?? null,
@@ -36,7 +38,8 @@ export default function MediaPage() {
     ...baseFilters,
     primary_release_year: searchParams.get("primary_release_year") ?? null,
     primary_release_date: searchParams.get("primary_release_date") ?? null,
-    release_date: searchParams.get("release_date") ?? null,
+    "release_date.lte": searchParams.get("release_date.lte") ?? null,
+    "release_date.gte": searchParams.get("release_date.gte") ?? null,
     certification: searchParams.get("certification") ?? null,
     region: searchParams.get("region") ?? null,
     with_cast: searchParams.get("with_cast") ?? null,
@@ -49,7 +52,7 @@ export default function MediaPage() {
     first_air_date: searchParams.get("first_air_date") ?? null,
   };
 
-  let filters = media === "movie" ? movieFilters : tvFilters;
+  const filters = media === "movie" ? movieFilters : tvFilters;
 
   const { data, isLoading, isError, error } = useMedia({ media, filters });
 
