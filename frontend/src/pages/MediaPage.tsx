@@ -15,35 +15,38 @@ export default function MediaPage() {
 
   const { imgConfig } = useRouteLoaderData("app");
 
-  if (!media) return <NotFound />;
-
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const baseFilters = {
+    vote_average: searchParams.get("vote_average") ?? null,
+    vote_count: searchParams.get("vote_count") ?? null,
+    language: searchParams.get("language") ?? null,
+    watch_region: searchParams.get("watch_region") ?? null,
+    sort_by: searchParams.get("sort_by") ?? null,
+    with_genres: searchParams.get("with_genres") ?? null,
+    without_genres: searchParams.get("without_genres") ?? null,
+    with_watch_providers: searchParams.get("with_watch_providers") ?? null,
+    without_watch_providers:
+      searchParams.get("without_watch_providers") ?? null,
+    with_keywords: searchParams.get("with_keywords"),
+    without_keywords: searchParams.get("without_keywords"),
+  };
+
   const movieFilters = {
-    primary_release_year: "",
-    primary_release_date: "gte or lte",
-    language: "",
-    release_date: "gte or lte",
-    certification: "use in conjunction with region ",
-    region: "region",
-    sort_by: "sort by options",
-    vote_average: "gte or lte",
-    vote_count: "gte lte",
-    watch_region: "",
-    with_cast: "",
-    with_genres: "",
-    without_genres: "",
-    with_watch_providers: "",
+    ...baseFilters,
+    primary_release_year: searchParams.get("primary_release_year") ?? null,
+    primary_release_date: searchParams.get("primary_release_date") ?? null,
+    release_date: searchParams.get("release_date") ?? null,
+    certification: searchParams.get("certification") ?? null,
+    region: searchParams.get("region") ?? null,
+    with_cast: searchParams.get("with_cast") ?? null,
   };
 
   const tvFilters = {
-    air_date: "gte or lte",
-    first_air_date_year: "",
-    first_air_date: "gte or lte",
-    sort_by: "sort by options",
-    vote_average: "gte or lte",
-    vote_count: "gte lte",
-    watch_region: "",
+    ...baseFilters,
+    air_date: searchParams.get("air_date") ?? null,
+    first_air_date_year: searchParams.get("first_air_date_year") ?? null,
+    first_air_date: searchParams.get("first_air_date") ?? null,
   };
 
   let filters = media === "movie" ? movieFilters : tvFilters;

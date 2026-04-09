@@ -26,7 +26,7 @@ export default function SortByMenu({ media }: { media: string }) {
 
   const [searchParams] = useSearchParams();
 
-  const sortBy = searchParams.get("sort_by") ?? null;
+  const sortBy = searchParams.get("sort_by");
 
   const [param, setParam] = useState(sortBy?.split(".")?.[0] ?? null);
 
@@ -45,7 +45,11 @@ export default function SortByMenu({ media }: { media: string }) {
   };
 
   useEffect(() => {
-    setFilter("sort_by", `${param}.${order}`);
+    if (param === null) {
+      return;
+    } else {
+      setFilter("sort_by", `${param}.${order}`);
+    }
   }, [setFilter, order, param]);
 
   return (
@@ -53,7 +57,7 @@ export default function SortByMenu({ media }: { media: string }) {
       <Menu>
         <Menu.Toggle>{selectedOption?.name ?? "Sort by"}</Menu.Toggle>
         <Menu.Dropdown>
-          <ul className="flex flex-col ">
+          <ul className="flex flex-col">
             {options.map(option => (
               <li key={option.name}>
                 <button

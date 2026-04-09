@@ -26,6 +26,7 @@ export function useFilters() {
 
   const setFilter = useCallback(
     (key, val) => {
+      if (!val) return;
       searchParams.set(key, val);
       setSearchParams(searchParams);
     },

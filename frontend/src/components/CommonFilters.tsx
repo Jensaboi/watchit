@@ -3,11 +3,11 @@ import { NavLink } from "react-router";
 const filters = [
   {
     name: "Now Playing",
-    queryString: "",
+    queryOptions: "",
   },
-  { name: "Popular", queryString: "" },
-  { name: "Upcoming", queryString: "" },
-  { name: "Top Rated", queryString: "" },
+  { name: "Popular", queryObject: {} },
+  { name: "Upcoming", queryObject: "" },
+  { name: "Top Rated", queryObject: "" },
 ];
 
 export default function CommonFilters({ media }: { media: string }) {

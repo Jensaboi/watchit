@@ -1,7 +1,13 @@
+import { createQueryString } from "../utility/utility";
+
 export async function getMedia({ media, filters }) {
   if (!media) throw new Error("Media type is required");
 
-  const res = await fetch(`/api/discover/${media}`);
+  const queryString = createQueryString(filters);
+
+  console.log(queryString);
+
+  const res = await fetch(`/api/discover/${media}${queryString}`);
 
   const data = await res.json();
 
