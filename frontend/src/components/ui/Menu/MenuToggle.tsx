@@ -6,7 +6,7 @@ export default function MenuToggle({ children }) {
 
   return (
     <button
-      className="flex gap-1 items-center justify-center"
+      className="flex gap-1 items-center justify-center text-zinc-300"
       onClick={() => setIsOpen(!isOpen)}
     >
       {children}

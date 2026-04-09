@@ -28,7 +28,7 @@ export default function SortByMenu({ media }: { media: string }) {
 
   const sortBy = searchParams.get("sort_by");
 
-  const [param, setParam] = useState(sortBy?.split(".")?.[0] ?? null);
+  const param = sortBy?.split(".")?.[0] ?? null;
 
   const [order, setOrder] = useState<string>(sortBy?.split(".")?.[1] ?? "desc");
 
@@ -62,9 +62,9 @@ export default function SortByMenu({ media }: { media: string }) {
               <li key={option.name}>
                 <button
                   onClick={() => {
-                    setParam(option.param);
+                    setFilter("sort_by", option.param);
                   }}
-                  className="p-1 w-full text-start hover:bg-zinc-900 rounded-sm"
+                  className="p-1 w-full text-start  hover:bg-zinc-900 rounded-sm"
                 >
                   {option.name}
                 </button>

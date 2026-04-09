@@ -5,3 +5,7 @@ export function createQueryString(filters) {
 
   return `?${filterArr.join("&")}`;
 }
+
+export function getYYMMDDfromIsoString(todayIsoString: string): string {
+  return todayIsoString.split("T")?.[0] ?? "";
+}
