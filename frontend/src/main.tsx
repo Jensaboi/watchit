@@ -8,7 +8,9 @@ import HomePage from "./pages/HomePage.tsx";
 import SignInPage from "./pages/SignInPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
 import MediaPage from "./pages/MediaPage.tsx";
-import MediaDetailsPage from "./pages/MediaDetailsPage.tsx";
+import MediaDetailsPage, {
+  loader as detailsLoader,
+} from "./pages/MediaDetailsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,11 @@ const router = createBrowserRouter([
           { path: "/signin", element: <SignInPage /> },
           { path: "/signup", element: <SignUpPage /> },
           { path: "/:media", element: <MediaPage /> },
-          { path: "/:media/:id", element: <MediaDetailsPage /> },
+          {
+            path: "/:media/:id",
+            loader: detailsLoader,
+            element: <MediaDetailsPage />,
+          },
         ],
       },
     ],

@@ -12,7 +12,18 @@ export async function getMedia({ media, filters }) {
   const data = await res.json();
 
   if (!res.ok) {
-    throw new Error(data?.message ?? `Failed to load ${media}s...`);
+    throw new Error(`Failed to load ${media}'s: ${data?.message ?? ""}`);
+  }
+
+  return data;
+}
+
+export async function getMediaDetails({ media, id }) {
+  const res = await fetch(`/api/${media}/${id}`);
+
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(`Failed to load ${media} details: ${data?.message ?? ""}`);
   }
 
   return data;
@@ -23,7 +34,7 @@ export async function getImageConfig() {
 
   const data = await res.json();
   if (!res.ok) {
-    throw new Error("Failed to load configuration details...");
+    throw new Error("Failed to load image configuration...");
   }
 
   return data.images;

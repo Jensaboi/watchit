@@ -3,7 +3,7 @@ import AuthProvider from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getImageConfig, getCountries } from "./service/apiService";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export async function loader() {
   try {

@@ -7,7 +7,6 @@ import Error from "../components/Error";
 import MediaCard from "../components/ui/MediaCard";
 import GridLayout from "../components/GridLayout";
 import CommonFilters from "../components/CommonFilters";
-import Menu from "../components/ui/Menu";
 import SortByMenu from "../components/SortByMenu";
 
 export default function MediaPage() {
@@ -15,7 +14,7 @@ export default function MediaPage() {
 
   const { imgConfig } = useRouteLoaderData("app");
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const baseFilters = {
     sort_by: searchParams.get("sort_by") ?? null,
