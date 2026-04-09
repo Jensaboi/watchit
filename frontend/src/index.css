@@ -16,6 +16,11 @@
     color: var(--color-zinc-200);
     overflow-x: hidden;
   }
+
+  button,
+  a {
+    cursor: pointer;
+  }
 }
 
 /*
@@ -64,9 +69,18 @@
       border-color: var(--color-indigo-500);
       color: var(--color-indigo-500);
     }
+
     &:active {
       border-color: var(--color-indigo-400);
       color: var(--color-indigo-400);
     }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

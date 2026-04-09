@@ -1,10 +1,14 @@
 import { Link, useParams, useRouteLoaderData } from "react-router";
-import NotFound from "../components/NotFound";
+import { ListFilter, Search } from "lucide-react";
 import { useMedia } from "../hooks/useMedia";
 import { useSearchParams } from "react-router";
+import NotFound from "../components/NotFound";
 import Error from "../components/Error";
 import MediaCard from "../components/ui/MediaCard";
 import GridLayout from "../components/GridLayout";
+import CommonFilters from "../components/CommonFilters";
+import Menu from "../components/ui/Menu";
+import SortByMenu from "../components/SortByMenu";
 
 export default function MediaPage() {
   const { media } = useParams();
@@ -56,7 +60,21 @@ export default function MediaPage() {
 
   return (
     <section>
-      <h1 className="capitalize text-2xl font-bold">{media}</h1>
+      <div className="flex justify-between py-2">
+        <button>
+          <ListFilter />
+        </button>
+
+        <h1 className="capitalize text-2xl font-bold">{media}</h1>
+
+        <button>
+          <Search />
+        </button>
+      </div>
+
+      <CommonFilters media={media} />
+
+      <SortByMenu media={media} />
 
       <GridLayout>
         {data.results.map(item => (
