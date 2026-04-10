@@ -83,4 +83,19 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .icon-btn {
+    padding: calc(var(--spacing) * 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-zinc-200);
+      color: var(--color-zinc-900);
+    }
+  }
 }

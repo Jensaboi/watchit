@@ -83,15 +83,19 @@ export default function MediaPage() {
   const imgBaseUrl = imgConfig.secure_base_url + imgConfig.poster_sizes[3];
 
   return (
-    <section>
+    <section className="px-4">
       <div className="flex justify-between py-2">
-        <button>
+        <button
+          className="icon-btn"
+          title="filter"
+          aria-label="Open filter menu"
+        >
           <ListFilter />
         </button>
 
         <h1 className="capitalize text-2xl font-bold">{media}</h1>
 
-        <button>
+        <button title="Search" aria-label="Open search" className="icon-btn">
           <Search />
         </button>
       </div>
