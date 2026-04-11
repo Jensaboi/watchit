@@ -13,24 +13,43 @@ const today = getYYMMDDfromIsoString(nowIso);
 
 const future = getYYMMDDfromIsoString(futureIso);
 
-const filters = [
+const movieFilters = [
   {
     name: "Now Playing",
-    query: `include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${past}&release_date.lte=${today}`,
+    query: `sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${past}&release_date.lte=${today}`,
   },
   {
     name: "Popular",
-    query:
-      "include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+    query: "sort_by=popularity.desc",
   },
   {
     name: "Upcoming",
-    query: `include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${today}&release_date.lte=${future}`,
+    query: `sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${today}&release_date.lte=${future}`,
   },
   {
     name: "Top Rated",
     query:
-      "include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200",
+      "sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200",
+  },
+];
+
+const tvFilters = [
+  {
+    name: "Airing Today",
+    query: `sort_by=popularity.desc&air_date.lte=${today}&air_date.gte=${today}`,
+  },
+  {
+    name: "Popular",
+    query: "sort_by=popularity.desc",
+  },
+  {
+    name: "Upcoming",
+    query: `sort_by=popularity.desc&air_date.lte=${future}&air_date.gte=${today}`,
+  },
+  {
+    name: "Top Rated",
+    query:
+      "sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200",
   },
 ];
 
@@ -38,6 +57,8 @@ export default function CommonFilters({ media }: { media: string }) {
   const [searchParams] = useSearchParams();
 
   const currentParams = new URLSearchParams(searchParams);
+
+  const filters = media === "movie" ? movieFilters : tvFilters;
 
   return (
     <ul className="flex gap-4 whitespace-nowrap overflow-x-scroll py-4 no-scrollbar">
