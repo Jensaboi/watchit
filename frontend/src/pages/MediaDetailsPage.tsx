@@ -30,14 +30,13 @@ export default function MediaDetailsPage() {
   const { imgConfig } = useRouteLoaderData("app");
 
   const { media, id } = useParams();
+  if (media !== "movie" && media !== "tv") return <NotFound />;
 
   const { data, isLoading, isError, error } = useQuery(query);
 
   if (isLoading) return <h2>Loading...</h2>;
 
   if (isError) return <Error error={error} />;
-
-  if (media !== "movie" && media !== "tv") return <NotFound />;
 
   if (!id) return <NotFound />;
 
@@ -52,10 +51,12 @@ export default function MediaDetailsPage() {
     imgConfig.secure_base_url +
     imgConfig.backdrop_sizes[imgConfig.backdrop_sizes.length - 1];
 
+  console.log(data);
   return (
     <div className="w-full h-full">
       <div className="relative w-full h-full max-h-150">
-        <div>{/*backdrop*/}</div>
+        <div className="absolute inset-0 w-full h-full z-2 bg-zinc-900/50"></div>
+        <div className="absolute inset-0 w-full h-full z-2 bg-linear-to-r from-zinc-900/90 from-30% to-zinc-900/20"></div>
         <img
           className="absolute z-1 inset-0 w-full h-full object-cover object-center"
           src={backdropBaseUrl + data.backdrop_path}
@@ -68,7 +69,12 @@ export default function MediaDetailsPage() {
             alt={`${mediaName} poster`}
           />
           <section className="z-10 w-full h-full py-4">
-            <h1 className="text-2xl font-bold">{mediaName}</h1>
+            <h1 className="text-3xl font-bold">{mediaName}</h1>
+            <span className="block text-sm mb-6">
+              {data.genres.map(genre => genre.name).join(", ")}
+            </span>
+
+            <p className="text-base/7">{data.overview}</p>
           </section>
         </div>
       </div>

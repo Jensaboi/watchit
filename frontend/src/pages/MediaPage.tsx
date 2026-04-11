@@ -1,17 +1,18 @@
-import { Link, useParams, useRouteLoaderData } from "react-router";
+import { Link, useRouteLoaderData } from "react-router";
 import { ListFilter, Search } from "lucide-react";
 import { useMedia } from "../hooks/useMedia";
 import { useSearchParams } from "react-router";
-import NotFound from "../components/NotFound";
 import Error from "../components/Error";
 import MediaCard from "../components/ui/MediaCard";
 import GridLayout from "../components/GridLayout";
 import CommonFilters from "../components/CommonFilters";
 import SortByMenu from "../components/SortByMenu";
 
-export default function MediaPage() {
-  const { media } = useParams();
+type MediaPageProps = {
+  media: string;
+};
 
+export default function MediaPage({ media }: MediaPageProps) {
   const { imgConfig } = useRouteLoaderData("app");
 
   const [searchParams] = useSearchParams();
@@ -70,11 +71,10 @@ export default function MediaPage() {
     with_status: searchParams.get("with_status") ?? null,
   };
 
-  const filters = media === "movie" ? movieFilters : tvFilters;
+  const filters =
+    media === "movie" ? movieFilters : media === "tv" ? tvFilters : null;
 
   const { data, isLoading, isError, error } = useMedia({ media, filters });
-
-  if (media !== "movie" && media !== "tv") return <NotFound />;
 
   if (isLoading) return <h2>Loading...</h2>;
 

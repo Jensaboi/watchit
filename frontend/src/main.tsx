@@ -11,6 +11,10 @@ import MediaPage from "./pages/MediaPage.tsx";
 import MediaDetailsPage, {
   loader as detailsLoader,
 } from "./pages/MediaDetailsPage.tsx";
+import DetailsLayout from "./layout/DetailsLayout.tsx";
+import MediaCastPage from "./pages/MediaCastPage.tsx";
+import TvSeasonsPage from "./pages/TvSeasonsPage.tsx";
+import NotFound from "./components/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +28,21 @@ const router = createBrowserRouter([
           { path: "/", element: <HomePage /> },
           { path: "/signin", element: <SignInPage /> },
           { path: "/signup", element: <SignUpPage /> },
-          { path: "/:media", element: <MediaPage /> },
+          { path: "/movie", element: <MediaPage media={"movie"} /> },
+          { path: "/tv", element: <MediaPage media={"tv"} /> },
           {
             path: "/:media/:id",
             loader: detailsLoader,
             element: <MediaDetailsPage />,
           },
+          {
+            Component: DetailsLayout,
+            children: [
+              { path: "/:media/:id/cast", element: <MediaCastPage /> },
+              { path: "/tv/:id/seasons", element: <TvSeasonsPage /> },
+            ],
+          },
+          { path: "*", element: <NotFound /> },
         ],
       },
     ],

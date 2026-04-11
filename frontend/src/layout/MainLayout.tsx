@@ -26,7 +26,7 @@ export default function MainLayout() {
         </div>
         <nav
           data-isopen={navOpen}
-          className="z-10 translate-0 fixed top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isopen=false]:translate-x-full"
+          className="z-100 translate-0 fixed top-0 right-0 bg-zinc-900 w-full h-screen flex flex-col transistion-translate duration-300 ease-in-out data-[isopen=false]:translate-x-full"
         >
           <div className="p-4 flex justify-between align-center">
             <button onClick={() => setNavOpen(!navOpen)}>
