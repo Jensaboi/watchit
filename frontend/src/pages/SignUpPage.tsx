@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import Button from "../components/ui/Button";
 import { Link, useNavigate } from "react-router";
+import TextInput from "../components/ui/TextInput";
+import { ArrowLeft } from "lucide-react";
 
 export default function SignUpPage() {
   const { signUpUser } = useAuth();
@@ -10,11 +12,14 @@ export default function SignUpPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const formData = new FormData(e.target);
+
+      const name = formData.get("name");
 
       const email = formData.get("email");
 
@@ -29,13 +34,35 @@ export default function SignUpPage() {
       console.log(error);
     }
   }
+
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <h1>Sign up</h1>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
+    <section className="px-4">
+      <button onClick={() => navigate(-1)} className="icon-btn">
+        <ArrowLeft />
+      </button>
+      <form className="p-4 mx-auto max-w-150" onSubmit={handleSubmit}>
+        <h1 className="text-3xl my-6">Sign Up</h1>
+
+        <div className="flex flex-col gap-3 mb-6">
+          <label className="text-zinc-300" htmlFor="name">
+            Name
+          </label>
+          <TextInput
+            required={true}
+            onChange={e => setName(e.target.value)}
+            value={name}
+            id="name"
+            name="name"
+            type="text"
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 mb-6">
+          <label className="text-zinc-300" htmlFor="email">
+            Email
+          </label>
+          <TextInput
+            required={true}
             onChange={e => setEmail(e.target.value)}
             value={email}
             id="email"
@@ -44,9 +71,13 @@ export default function SignUpPage() {
           />
         </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        <div className="flex flex-col gap-3 mb-6">
+          <label className="text-base font-medium" htmlFor="password">
+            Password
+          </label>
+
+          <TextInput
+            required={true}
             onChange={e => setPassword(e.target.value)}
             value={password}
             id="password"
@@ -54,8 +85,8 @@ export default function SignUpPage() {
             type="password"
           />
         </div>
-        <Button type="submit" variant="primary">
-          Sign up
+        <Button className="w-full my-6" variant="primary">
+          Sign Up
         </Button>
       </form>
     </section>

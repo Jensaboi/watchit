@@ -8,7 +8,7 @@ export default function MediaCard({ title, img }: MediaCardProps) {
     <div className="group cursor-pointer">
       <div className="relative aspect-7/10">
         <img
-          className="absolute w-full opacity-0 group-hover:opacity-65 blur-lg"
+          className="absolute w-full opacity-0 group-hover:opacity-65 transition-all duration-300 ease-in-out blur-xl"
           src={img}
           alt=""
         />

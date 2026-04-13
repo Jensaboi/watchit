@@ -6,6 +6,5 @@ export default function ProtectedRoute({ children }) {
 
   if (user) return children;
 
-  console.log(user);
   return <Navigate to={"/signin"} />;
 }

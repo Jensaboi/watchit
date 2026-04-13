@@ -7,8 +7,13 @@ export default function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
 
   const { data } = supabase.auth.onAuthStateChange((event, session) => {
-    setSession(session);
-    console.log(`Supabase event handled: ${event}`);
+    if (event === "INITIAL_SESSION") {
+      // handle initial session
+      console.log(event);
+    } else {
+      console.log(event);
+      setSession(session);
+    }
   });
 
   async function signUpUser({
@@ -72,7 +77,7 @@ export default function AuthProvider({ children }) {
         return;
       }
 
-      setSession(data);
+      if (data) setSession(data);
     }
     loadSession();
   }, []);
