@@ -11,30 +11,33 @@ export default function SignInPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const formData = new FormData(e.target);
+    setError(null);
 
-      const email = formData.get("email");
+    const formData = new FormData(e.target);
 
-      const password = formData.get("password");
+    const email = formData.get("email");
 
-      const { success } = await signInUser({ email, password });
+    const password = formData.get("password");
 
-      if (success) navigate("/groups");
+    const { success, error, data } = await signInUser({ email, password });
 
-      return null;
-    } catch (error) {
-      console.log(error);
-    }
+    if (success && data) navigate("/groups");
+
+    if (!success && error) setError(error);
   }
 
   return (
     <section>
       <form className="p-4 mx-auto max-w-150" onSubmit={handleSubmit}>
         <h1 className="text-3xl my-6">Sign in</h1>
+
+        <div className="my-6 block">
+          {error && <p className="text-center text-pink-500/80">{error}</p>}
+        </div>
 
         <div className="flex flex-col gap-3 mb-6">
           <label className="text-zinc-300" htmlFor="email">
@@ -75,7 +78,7 @@ export default function SignInPage() {
           Sign in
         </Button>
         <p className="text-zinc-400 text-sm">
-          Already have an account?
+          Dont have an account?
           <Link
             className="hover:text-zinc-200 hover:underline ml-2"
             to={"/signup"}

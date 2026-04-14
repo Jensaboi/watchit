@@ -5,8 +5,6 @@ export async function getMedia({ media, filters }) {
 
   const queryString = createQueryString(filters);
 
-  console.log(queryString);
-
   const res = await fetch(`/api/discover/${media}${queryString}`);
 
   const data = await res.json();

@@ -12,7 +12,6 @@ export default function SignUpPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,20 +41,6 @@ export default function SignUpPage() {
       </button>
       <form className="p-4 mx-auto max-w-150" onSubmit={handleSubmit}>
         <h1 className="text-3xl my-6">Sign Up</h1>
-
-        <div className="flex flex-col gap-3 mb-6">
-          <label className="text-zinc-300" htmlFor="name">
-            Name
-          </label>
-          <TextInput
-            required={true}
-            onChange={e => setName(e.target.value)}
-            value={name}
-            id="name"
-            name="name"
-            type="text"
-          />
-        </div>
 
         <div className="flex flex-col gap-3 mb-6">
           <label className="text-zinc-300" htmlFor="email">
@@ -88,6 +73,15 @@ export default function SignUpPage() {
         <Button className="w-full my-6" variant="primary">
           Sign Up
         </Button>
+        <p className="text-zinc-400 text-sm">
+          Already have an account?
+          <Link
+            className="hover:text-zinc-200 hover:underline ml-2"
+            to={"/signin"}
+          >
+            sign in here!
+          </Link>
+        </p>
       </form>
     </section>
   );

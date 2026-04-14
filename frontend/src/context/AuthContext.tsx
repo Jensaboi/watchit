@@ -10,9 +10,14 @@ export default function AuthProvider({ children }) {
     if (event === "INITIAL_SESSION") {
       // handle initial session
       console.log(event);
-    } else {
+      console.log(session);
+    } else if (event === "SIGNED_OUT") {
       console.log(event);
+      console.log(session);
+      setSession(null);
+    } else {
       setSession(session);
+      console.log(event);
     }
   });
 
@@ -68,6 +73,18 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function signOutUser() {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) return { success: false, error: error.message };
+
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: err?.message };
+    }
+  }
+
   useEffect(() => {
     async function loadSession() {
       const { data, error } = await supabase.auth.getSession();
@@ -83,7 +100,9 @@ export default function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ session, signUpUser, signInUser }}>
+    <AuthContext.Provider
+      value={{ session, signUpUser, signInUser, signOutUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
