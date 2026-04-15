@@ -10,14 +10,15 @@ export default function AuthProvider({ children }) {
     if (event === "INITIAL_SESSION") {
       // handle initial session
       console.log(event);
-      console.log(session);
+      console.log("sess", session);
     } else if (event === "SIGNED_OUT") {
       console.log(event);
-      console.log(session);
+      console.log("sess", session);
       setSession(null);
     } else {
       setSession(session);
       console.log(event);
+      console.log("sess", session);
     }
   });
 
@@ -94,7 +95,9 @@ export default function AuthProvider({ children }) {
         return;
       }
 
-      if (data) setSession(data);
+      const { session } = data;
+
+      if (session) setSession(data);
     }
     loadSession();
   }, []);
