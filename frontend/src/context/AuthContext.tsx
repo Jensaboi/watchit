@@ -16,9 +16,9 @@ export default function AuthProvider({ children }) {
       console.log("sess", session);
       setSession(null);
     } else {
-      setSession(session);
       console.log(event);
       console.log("sess", session);
+      setSession(session);
     }
   });
 

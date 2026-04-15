@@ -15,7 +15,7 @@ import DetailsLayout from "./layout/DetailsLayout.tsx";
 import MediaCastPage from "./pages/MediaCastPage.tsx";
 import TvSeasonsPage from "./pages/TvSeasonsPage.tsx";
 import NotFound from "./components/NotFound.tsx";
-import GroupsPage from "./pages/GroupsPage.tsx";
+import GroupsPage, { loader as groupsLoader } from "./pages/GroupsPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
@@ -46,6 +46,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/groups",
+            loader: groupsLoader,
             element: (
               <ProtectedRoute>
                 <GroupsPage />

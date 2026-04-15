@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import Button from "../components/ui/Button";
 import { Link, useNavigate } from "react-router";
 import TextInput from "../components/ui/TextInput";
+import { ArrowLeft } from "lucide-react";
 
 export default function SignInPage() {
   const { signInUser } = useAuth();
@@ -31,7 +32,10 @@ export default function SignInPage() {
   }
 
   return (
-    <section>
+    <section className="px-4">
+      <button onClick={() => navigate(-1)} className="icon-btn">
+        <ArrowLeft />
+      </button>
       <form className="p-4 mx-auto max-w-150" onSubmit={handleSubmit}>
         <h1 className="text-3xl my-6">Sign in</h1>
 

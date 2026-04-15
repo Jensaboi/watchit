@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import AuthProvider from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getImageConfig, getCountries } from "./service/apiService";
+import ModalProvider from "./context/ModalContext";
 
 export const queryClient = new QueryClient();
 
@@ -20,7 +21,9 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Outlet />
+          <ModalProvider>
+            <Outlet />
+          </ModalProvider>
         </AuthProvider>
       </QueryClientProvider>
     </>

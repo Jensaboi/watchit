@@ -12,6 +12,7 @@ export default function SignUpPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +25,7 @@ export default function SignUpPage() {
 
       const password = formData.get("password");
 
-      const { success } = await signUpUser({ email, password });
+      const { success, error } = await signUpUser({ email, password });
 
       if (success) navigate("/groups");
 
@@ -41,6 +42,10 @@ export default function SignUpPage() {
       </button>
       <form className="p-4 mx-auto max-w-150" onSubmit={handleSubmit}>
         <h1 className="text-3xl my-6">Sign Up</h1>
+
+        <div className="my-6 block">
+          {error && <p className="text-center text-pink-500/80">{error}</p>}
+        </div>
 
         <div className="flex flex-col gap-3 mb-6">
           <label className="text-zinc-300" htmlFor="email">
