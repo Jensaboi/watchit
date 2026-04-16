@@ -6,6 +6,8 @@ const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
 
+  const user = session?.user ?? null;
+
   const { data } = supabase.auth.onAuthStateChange((event, session) => {
     if (event === "INITIAL_SESSION") {
       // handle initial session
@@ -104,7 +106,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ session, signUpUser, signInUser, signOutUser }}
+      value={{ session, user, signUpUser, signInUser, signOutUser }}
     >
       {children}
     </AuthContext.Provider>

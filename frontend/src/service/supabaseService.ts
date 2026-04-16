@@ -27,7 +27,8 @@ export async function createGroup({ name, userId }) {
   try {
     const { data, error } = await supabase
       .from("groups")
-      .insert({ name, creator_id: userId });
+      .insert({ name, creator_id: userId })
+      .select();
 
     if (error) throw error;
 

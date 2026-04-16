@@ -1,10 +1,10 @@
 type TextInputProps = {
   id: string;
-  value: string;
+  value?: string;
   name: string;
-  required: boolean;
+  required?: boolean;
   type: "email" | "text" | "password";
-  onChange: (e: unknown) => void;
+  onChange?: (e: unknown) => void;
 };
 
 export default function TextInput({
